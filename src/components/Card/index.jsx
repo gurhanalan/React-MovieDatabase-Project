@@ -1,10 +1,16 @@
 import React from "react";
-import { StyledCardText, StyledCardWrapper } from "./Card.style";
+import {
+    StyledCardText,
+    StyledCardWrapper,
+    StyledCardImage,
+} from "./Card.style";
 
-export const Card = () => {
+export const Card = ({ movie, imgsrc }) => {
+    // console.log("deneme", movie);
     return (
         <StyledCardWrapper>
-            <StyledCardText>Card</StyledCardText>
+            <StyledCardImage src={imgsrc} alt="image" />
+            <StyledCardText>{movie.original_title}</StyledCardText>
         </StyledCardWrapper>
     );
 };
