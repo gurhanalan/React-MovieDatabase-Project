@@ -1,11 +1,18 @@
 import React from "react";
 import { Card } from "../Card";
+import { StyledCardsWrapper } from "./CardList.style";
 
-const CardList = () => {
+const CardList = ({ movies, baseImageUrl }) => {
     return (
-        <div>
-            <Card />
-        </div>
+        <StyledCardsWrapper>
+            {movies?.map((movie, index) => (
+                <Card
+                    key={index}
+                    movie={movie}
+                    imgsrc={baseImageUrl + movie.poster_path}
+                />
+            ))}
+        </StyledCardsWrapper>
     );
 };
 
