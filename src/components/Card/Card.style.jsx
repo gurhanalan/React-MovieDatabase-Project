@@ -11,6 +11,7 @@ export const StyledCardWrapper = styled.div`
     flex-direction: column;
     padding: 0.5rem;
     transition: 0.3s;
+    cursor: pointer;
 
     &:hover {
         transform: scale(1.05);
