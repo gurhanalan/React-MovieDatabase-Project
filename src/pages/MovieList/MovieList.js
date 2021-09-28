@@ -1,15 +1,14 @@
-import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import CardList from "./components/CardList";
-import SearchBar from "./components/SearchBar";
+import CardList from "../../components/CardList";
+import SearchBar from "../../components/SearchBar";
 
 const apiKey = "d94423c2996901c0fdff420de40c7d79";
 // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&query=Star%20Wars&page=1
 const baseUrl = "https://api.themoviedb.org/3/search/movie";
 const baseImageUrl = "https://image.tmdb.org/t/p/w500";
 
-function App() {
+function MovieList() {
     const [movies, setMovies] = useState(null);
     const [searchMovie, setSearchMovie] = useState("Star Wars");
     // useEffect - ComponentdidMount - Axios API Call
@@ -26,7 +25,9 @@ function App() {
             .then(function (response) {
                 console.log(response.data.results);
                 // moviesArray.push(...response.data.results);
-                setMovies(response?.data?.results);
+                setMovies(
+                    response?.data?.results.filter((movie) => movie.poster_path)
+                );
             })
             .catch(function (error) {
                 console.log(error);
@@ -36,11 +37,11 @@ function App() {
             });
     }, [searchMovie]);
     return (
-        <div className="App">
+        <div >
             <SearchBar setSearchMovie={setSearchMovie} />
             <CardList movies={movies} baseImageUrl={baseImageUrl} />
         </div>
     );
 }
 
-export default App;
+export default MovieList;

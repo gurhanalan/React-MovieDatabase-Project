@@ -14,6 +14,7 @@ export const StyledSearchBarButton = styled.button`
     font-weight: bolder;
     padding: 0.5rem 1rem;
     border: none;
+    cursor: pointer;
 `;
 
 export const StyledSearchBarWrapper = styled.div`
