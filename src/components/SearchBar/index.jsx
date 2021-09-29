@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import {
     StyledSearchBarInput,
     StyledSearchBarButton,
     StyledSearchBarWrapper,
 } from "./SearchBar.style";
 const SearchBar = ({ setSearchMovie }) => {
-    const [searchInput, setSearchInput] = useState("");
+    const input = useRef(null);
     return (
         <StyledSearchBarWrapper>
             <StyledSearchBarInput
-                onChange={(e) => setSearchInput(e.target.value)}
+                ref={input}
                 onKeyDown={(e) =>
-                    e.key === "Enter" && setSearchMovie(searchInput)
+                    e.key === "Enter" && setSearchMovie(input?.current?.value)
                 }
             />
-            <StyledSearchBarButton onClick={() => setSearchMovie(searchInput)}>
+            <StyledSearchBarButton
+                onClick={() => setSearchMovie(input?.current?.value)}
+            >
                 Search
             </StyledSearchBarButton>
         </StyledSearchBarWrapper>
