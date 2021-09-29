@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import CardList from "../../components/CardList";
 import SearchBar from "../../components/SearchBar";
 
@@ -8,11 +8,12 @@ const apiKey = "d94423c2996901c0fdff420de40c7d79";
 const baseUrl = "https://api.themoviedb.org/3/search/movie";
 const baseImageUrl = "https://image.tmdb.org/t/p/w500";
 
+export const MovieContext = createContext(null);
+
 function MovieList() {
     const [movies, setMovies] = useState(null);
     const [searchMovie, setSearchMovie] = useState("Star Wars");
-    // useEffect - ComponentdidMount - Axios API Call
-    // const moviesArray = [];
+
     useEffect(() => {
         axios
             .get(baseUrl, {
@@ -37,10 +38,10 @@ function MovieList() {
             });
     }, [searchMovie]);
     return (
-        <div >
-            <SearchBar setSearchMovie={setSearchMovie} />
-            <CardList movies={movies} baseImageUrl={baseImageUrl} />
-        </div>
+        <MovieContext.Provider value={{ setSearchMovie, movies, baseImageUrl }}>
+            <SearchBar />
+            <CardList />
+        </MovieContext.Provider>
     );
 }
 

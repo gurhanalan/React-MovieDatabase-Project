@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card } from "../Card";
 import { StyledCardsWrapper } from "./CardList.style";
+import { MovieContext } from "../../pages/MovieList/MovieList";
 
-const CardList = ({ movies, baseImageUrl }) => {
+const CardList = () => {
+    const { movies, baseImageUrl } = useContext(MovieContext);
     return (
         <StyledCardsWrapper>
             {movies?.map((movie, index) => (

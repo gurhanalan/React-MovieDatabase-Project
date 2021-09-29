@@ -1,10 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import {
     StyledSearchBarInput,
     StyledSearchBarButton,
     StyledSearchBarWrapper,
 } from "./SearchBar.style";
-const SearchBar = ({ setSearchMovie }) => {
+import { MovieContext } from "../../pages/MovieList/MovieList";
+
+const SearchBar = () => {
+    const { setSearchMovie } = useContext(MovieContext);
     const input = useRef(null);
     return (
         <StyledSearchBarWrapper>
