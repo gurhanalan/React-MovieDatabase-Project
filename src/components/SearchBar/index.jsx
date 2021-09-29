@@ -9,17 +9,18 @@ import { MovieContext } from "../../pages/MovieList/MovieList";
 const SearchBar = () => {
     const { setSearchMovie } = useContext(MovieContext);
     const input = useRef(null);
+
+    const search = () => {
+        setSearchMovie(input?.current?.value);
+        input.current.value = "";
+    };
     return (
         <StyledSearchBarWrapper>
             <StyledSearchBarInput
                 ref={input}
-                onKeyDown={(e) =>
-                    e.key === "Enter" && setSearchMovie(input?.current?.value)
-                }
+                onKeyDown={(e) => e.key === "Enter" && search()}
             />
-            <StyledSearchBarButton
-                onClick={() => setSearchMovie(input?.current?.value)}
-            >
+            <StyledSearchBarButton onClick={search}>
                 Search
             </StyledSearchBarButton>
         </StyledSearchBarWrapper>
